@@ -211,7 +211,3 @@ else puts "ERROR"
 end  
 puts h.error_message
 #h.process_output
-
-it_id>/)
-hits.each{|hit| puts hit}
-=end
