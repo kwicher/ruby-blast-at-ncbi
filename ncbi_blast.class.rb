@@ -48,7 +48,7 @@ class NCBI_BLAST
   # @program - program used for Blast search
   @program
 
-  # @logger - an instance of the logger class used for logging.
+  # @logger - an instance of the ruby standart library logger class used for logging.
   @logger
 
   # @error - contains information whether error has occured during setting up
