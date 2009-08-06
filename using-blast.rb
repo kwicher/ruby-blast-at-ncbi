@@ -90,7 +90,7 @@ if tries >= 0
   rescue StandardError,Timeout::Error,OpenURI::HTTPError => e
     tries -= 1
     puts "Error message: " + e.message + " . " + tries.to_s + " tries left."
-    if tries >= 0
+    if tries >= 0 && e.message != "INVALID RID"
       sleep 60
       retry
     end

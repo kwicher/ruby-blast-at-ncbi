@@ -111,7 +111,7 @@ class NCBI_BLAST
         # Do BLAST search and wait for results.
         # Maybe we should move this code to a new function.
         do_blast
-        if @rid!=nil
+        if @rid.length > 0
           res='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&FORMAT_OBJECT=SearchInfo&RID=' + @rid
           while status = open(res).read.scan(/Status=(.*?)$/).to_s=='WAITING'
             @logger.debug("Status=WAITING")
@@ -160,13 +160,13 @@ class NCBI_BLAST
     # Returns result of the search in XML format if successfully retrieved the data.
     # Exception handling must done by the caller.
     def fetch_results
-      if @rid!=nil
+      if @rid.length > 0
         res='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&FORMAT_TYPE=XML&RID=' + rid.to_s
         @answer=open(res).read
         return @answer
       else 
         @logger.error "BLAST SEARCH DID NOT INITIATED. RID == nil."
-        raise StandardError.new("BLAST SEARCH DID NOT INITIATED. RID == nil.")
+        raise StandardError.new("INVALID RID")
       end
     end
     #END----------FETCH_RESULTS------------------------------------------------
